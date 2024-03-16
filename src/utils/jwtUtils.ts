@@ -1,14 +1,18 @@
 import { Card } from "../models/Card";
 import jwt from "jsonwebtoken";
-
-const secretKey = "your-secret-key";
-
-const signToken = (card: Card): string => {
+import { UnauthorizedError } from "../libs/errors";
+import config from "../config/vars";
+const secretKey = config.jwtSecret || "";
+export const signToken = (card: Card): string => {
   return jwt.sign(card, secretKey, { expiresIn: "1m" });
 };
 
-const verifyToken = (token: string): Card => {
-  return jwt.verify(token, secretKey) as Card;
+export const verifyToken = (token: string): any => {
+  try {
+    return jwt.verify(token, secretKey) as Card;
+  } catch (error) {
+    throw new UnauthorizedError("401", "Expiration Token");
+  }
 };
 
 export default { signToken, verifyToken };

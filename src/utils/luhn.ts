@@ -1,8 +1,5 @@
 export const validateCardNumber = (cardNumber: string): boolean => {
-  // Remove spaces and non-digit characters from the card number
   const cleanCardNumber = cardNumber.replace(/\D/g, "");
-
-  // Check if the card number has the correct length and is composed of digits only
   if (
     cleanCardNumber.length < 13 ||
     cleanCardNumber.length > 16 ||
@@ -10,8 +7,6 @@ export const validateCardNumber = (cardNumber: string): boolean => {
   ) {
     return false;
   }
-
-  // Calculate the Luhn checksum
   let sum = 0;
   let doubleDigit = false;
   for (let i = cleanCardNumber.length - 1; i >= 0; i--) {

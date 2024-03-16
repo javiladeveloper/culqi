@@ -1,16 +1,18 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
-    "strict": true,
-    "noImplicitThis": true,
     "esModuleInterop": true,
+    "strictNullChecks": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
     "moduleResolution": "node",
-    "lib": ["es6"],
-
-    "outDir": "./dist",
-    "baseUrl": "./src"
+    "removeComments": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "sourceMap": true,
+    "lib": ["es2019"],
+    "target": "es2019",
+    "outDir": "dist",
+    "module": "CommonJS"
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": ["./**/*.ts", "./dist/*.ts", "./test/*.ts"]
 }

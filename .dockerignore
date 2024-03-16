@@ -1,0 +1,10 @@
+node_modules
+npm-debug.log
+combined.log
+error.log
+.env
+.env.dev
+.env.prod
+deploy.sh
+deploy-prod.sh
+

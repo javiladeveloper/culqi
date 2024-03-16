@@ -1,32 +1,36 @@
-import { v4 as uuidv4 } from "uuid";
 import { Card } from "../models/Card";
 import RedisClient from "../utils/redisClient";
 import jwt from "../utils/jwtUtils";
+import { Logger } from "../libs/Logger";
+import config from "../config/vars";
 
 export class TokenService {
+  private log: Logger;
+
+  constructor() {
+    this.log = new Logger("services");
+  }
   async createToken(
-    card_number: number,
+    cardNumber: number,
     cvv: number,
-    expiration_month: string,
-    expiration_year: string,
+    expirationMonth: string,
+    expirationYear: string,
     email: string
   ): Promise<string> {
     const cardData: Card = {
-      card_number,
+      cardNumber,
       cvv,
-      expiration_month,
-      expiration_year,
+      expirationMonth,
+      expirationYear,
       email,
     };
     const token = jwt.signToken(cardData);
-    await RedisClient.setex(token, 60, JSON.stringify(cardData));
+    await RedisClient.setex(
+      token,
+      parseInt(config.secExpiration || ""),
+      JSON.stringify(cardData)
+    );
+    this.log.info("[creditCard]", "Save Token on redis");
     return token;
-  }
-
-  async verifyToken(token: string): Promise<void> {
-    const exists = await RedisClient.get(token);
-    if (!exists) {
-      throw new Error("Invalid token");
-    }
   }
 }

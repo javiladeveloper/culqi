@@ -1,9 +1,12 @@
 import Redis from "ioredis";
+import { Logger } from "../libs/Logger";
 
 class RedisClient {
   client: any;
+  log: Logger;
   constructor() {
     this.client = new Redis();
+    this.log = new Logger("utils");
   }
 
   public async setex(
@@ -11,10 +14,13 @@ class RedisClient {
     seconds: number,
     value: string
   ): Promise<void> {
-    await this.client.set(key, JSON.stringify(value), "EX", seconds); // Cache for 60 sec
+    this.log.debug("[creditCard]", "Set Redis");
+    return await this.client.set(key, JSON.stringify(value), "EX", seconds);
   }
 
   public async get(key: string): Promise<string | null> {
+    this.log.debug("[creditCard]", "Get Redis");
+
     return await this.client.get(key);
   }
 
