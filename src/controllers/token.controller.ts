@@ -33,7 +33,13 @@ export class TokenController {
     }
   }
 
-  private isValidated(cardNumber, cvv, expirationMonth, expirationYear, email) {
+  private isValidated(
+    cardNumber: number,
+    cvv: number,
+    expirationMonth: string,
+    expirationYear: string,
+    email: string
+  ) {
     if (!cardNumber || !this.isValidCardNumber(cardNumber.toString())) {
       this.log.error("[creditCard]", JSON.stringify("Validate error", null, 2));
       throw new BadRequestError("400", "Is not valid Card Number");

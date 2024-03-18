@@ -18,7 +18,6 @@
 ## API Endpoints
 
 - `POST /api/token`: Create a token (body: card_number, cvv, expiration_month, expiration_year, email).
-- `GET /api/token/verify`: Verify a token (header: token).
 - `GET /api/card/:token`: Get card data by token.
 
 ## Deployment

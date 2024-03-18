@@ -1,11 +1,14 @@
 import Redis from "ioredis";
 import { Logger } from "../libs/Logger";
-
+import config from "../config/vars";
 class RedisClient {
   client: any;
   log: Logger;
   constructor() {
-    this.client = new Redis();
+    this.client = new Redis({
+      port: Number(config.portRedis),
+      host: config.host,
+    });
     this.log = new Logger("utils");
   }
 

@@ -8,12 +8,12 @@ export function ValidateHeaders(
   _res: Response,
   next: NextFunction
 ) {
-  if (!req.headers.authorization) {
+  const authorization = req.headers.authorization?.replace("Bearer ", "");
+  if (!authorization) {
     throw new UnauthorizedError("CREDIT_CARD", "No Autorizated");
   }
 
-  const TokenArray = (<string>req.headers.authorization).split(" ");
-  if (TokenArray[1] !== config.autorization) {
+  if (authorization !== config.autorization) {
     throw new UnauthorizedError("CREDIT_CARD", "Token No Format");
   }
   next();

@@ -17,12 +17,5 @@ spec:
           image: your-docker-image:latest
           ports:
             - containerPort: 3000
-          env:
-            - name: NODE_ENV
-              value: production
-            - name: REDIS_HOST
-              value: redis
-            - name: REDIS_PORT
-              value: "6379"
       imagePullSecrets:
         - name: regcred
