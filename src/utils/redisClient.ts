@@ -27,10 +27,6 @@ class RedisClient {
 
     return await this.client.get(key);
   }
-
-  public quit(): void {
-    this.client.quit();
-  }
 }
 
 const redisClient = new RedisClient();
