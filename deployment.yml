@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reto-culqi-deploy
+  labels:
+    name: reto-culqi-deploy
+    app: reto-culqi-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: reto-culqi-pod
+      app: reto-culqi-app
+  template:
+    metadata:
+      name: reto-culqi-pod
+      labels:
+        name: reto-culqi-pod
+        app: reto-culqi-app
+    spec:
+      containers:
+        - name: reto-culqi-container
+          image: "767398124234.dkr.ecr.us-east-1.amazonaws.com/culqi-challenge:latest"
+          imagePullPolicy: Always
+          env:
+            - name: PORT
+              value: "30072"
+            - name: JWT_SECRET
+              value: "CULQI_CHALLENGE"
+            - name: AUTORIZATION
+              value: "pk_test_LsRBKejzCOEEWOsw"
+            - name: SECOND_EXPIRATION
+              value: "60"
+            - name: HOST
+              value: "redisculqi-d0eo7i.serverless.use1.cache.amazonaws.com"
+            - name: PORTREDIS
+              value: "6379"
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: "1"
+            requests:
+              memory: 128Mi
+              cpu: "0.2"

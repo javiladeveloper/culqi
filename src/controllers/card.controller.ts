@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { CardService } from "../services/card.service";
 import { Logger } from "../libs/Logger";
+
 export class CardController {
   private cardService: CardService;
   private log: Logger;
