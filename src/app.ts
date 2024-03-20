@@ -14,8 +14,8 @@ app.use(cors());
 // Routes
 app.use("/api", cardRoutes);
 app.use("/api", tokenRoutes);
-app.get("/healthcheck", (_req, res) => {
-  res.send({ status: "Working" });
+app.get("/", (_req, res) => {
+  res.send({ status: "Hola mundo" });
 });
 // Error handling middleware
 app.use(function (err: Error, _req: Request, res: Response) {

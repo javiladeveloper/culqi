@@ -5,6 +5,7 @@ services:
     ports:
       - "6379:6379"
   node-app:
+    container_name: reto-culqi
     build: .
     ports:
       - "4001:3000"

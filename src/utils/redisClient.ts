@@ -4,10 +4,11 @@ import config from "../config/vars";
 class RedisClient {
   client: any;
   log: Logger;
+
   constructor() {
     this.client = new Redis({
-      port: Number(config.portRedis),
       host: config.host,
+      port: Number(config.portRedis),
     });
     this.log = new Logger("utils");
   }

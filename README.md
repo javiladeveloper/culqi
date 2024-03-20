@@ -12,21 +12,19 @@
 ## Commands
 
 - `npm run build`: Compile TypeScript code.
-- `npm run start`: Start the server in production mode.
 - `npm test`: Run tests.
-- `npm run dev`: Start the server in development mode with nodemon.
+
+## Docker
+
+- `docker build -t reto-culqi .`: Create the Docker image.
+- `docker-compose build`: Build the services defined in your docker-compose.yml file.
+- `docker-compose up -d`: Start the Docker containers in detached mode.
+- `localhost:4001`: Access your application on Docker at this address.
 
 ## API Endpoints
 
 - `POST /api/token`: Create a token (body: card_number, cvv, expiration_month, expiration_year, email).
 - `GET /api/card/:token`: Get card data by token.
-
-## Docker
-
-- `docker build -t reto-culqi .`:create images.
-- `docker-compose build`: upload images.
-- `docker-compose up -d`: up container.
-- `localhost:4001`: to work on docker
 
 ## Deployment
 
