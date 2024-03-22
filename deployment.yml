@@ -21,6 +21,8 @@ spec:
       containers:
         - name: reto-culqi-container
           image: "767398124234.dkr.ecr.us-east-1.amazonaws.com/culqi-challenge:latest"
+          ports:
+            - containerPort: 3000
           imagePullPolicy: Always
           env:
             - name: PORT
@@ -32,7 +34,7 @@ spec:
             - name: SECOND_EXPIRATION
               value: "60"
             - name: HOST
-              value: "redisculqi-d0eo7i.serverless.use1.cache.amazonaws.com"
+              value: "localhost"
             - name: PORTREDIS
               value: "6379"
           resources:

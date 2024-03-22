@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc && node dist/src/server.js",
     "test": "jest --ci --coverage --detectOpenHandles",
-    "dev": "nodemon src/server.ts"
+    "dev": "nodemon src/server.ts",
+    "buildTS": "tsc"
   },
   "keywords": [],
   "author": "",
